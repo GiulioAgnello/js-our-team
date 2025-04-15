@@ -40,6 +40,12 @@ const teamMembers = [
 // prendo l'elemento che mi serve
 
 const cardContainer = document.getElementById("card-container");
+const nameHtml = document.getElementById("new-name");
+const roleHtml = document.getElementById("new-role");
+const emailHtml = document.getElementById("new-email");
+const imgHtml = document.getElementById("new-img");
+
+// ciclo per immettere l'html
 
 let card = ``;
 for (const Members of teamMembers) {
@@ -60,7 +66,7 @@ for (const Members of teamMembers) {
                   <h5 class="card-title">${name}</h5>
                   <p class="card-text">${role}</p>
                   <p class="card-text">
-                    <small class="text-body-dark">${email}</small>
+                    <small class="link-primary">${email}</small>
                   </p>
                 </div>
               </div>
@@ -71,8 +77,42 @@ for (const Members of teamMembers) {
 
 cardContainer.innerHTML = card;
 
-console.log(cardContainer);
+// form per inserire nuova card
 
-// funzione per inner da inserire
+const addMember = () => {
+  name = nameHtml.value;
+  role = roleHtml.value;
+  email = emailHtml.value;
+  img = imgHtml.value;
 
-console.log(card);
+  card += `<div class="col-4">
+  <div class="card mb-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="./${img}"
+          class="img-fluid rounded-start"
+          alt="${name}"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body text-bg-dark">
+          <h5 class="card-title">${name}</h5>
+          <p class="card-text">${role}</p>
+          <p class="card-text">
+            <small class="link-primary">${email}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+  cardContainer.innerHTML = card;
+};
+
+document.addEventListener("submit", (e) => {
+  e.preventDefault;
+
+  return addMember;
+});
