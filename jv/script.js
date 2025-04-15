@@ -44,6 +44,7 @@ const nameHtml = document.getElementById("new-name");
 const roleHtml = document.getElementById("new-role");
 const emailHtml = document.getElementById("new-email");
 const imgHtml = document.getElementById("new-img");
+const newMemebersFrom = document.getElementById("new-membersforms");
 
 // ciclo per immettere l'html
 
@@ -80,39 +81,44 @@ cardContainer.innerHTML = card;
 // form per inserire nuova card
 
 const addMember = () => {
-  name = nameHtml.value;
-  role = roleHtml.value;
-  email = emailHtml.value;
-  img = imgHtml.value;
-
-  card += `<div class="col-4">
-  <div class="card mb-3" style="max-width: 540px">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img
-          src="./${img}"
-          class="img-fluid rounded-start"
-          alt="${name}"
-        />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body text-bg-dark">
-          <h5 class="card-title">${name}</h5>
-          <p class="card-text">${role}</p>
-          <p class="card-text">
-            <small class="link-primary">${email}</small>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>`;
-
   cardContainer.innerHTML = card;
 };
 
-document.addEventListener("submit", (e) => {
-  e.preventDefault;
+newMemebersFrom.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = nameHtml.value;
+  const role = roleHtml.value;
+  const email = emailHtml.value;
+  const img = imgHtml.value;
 
-  return addMember;
+  const newMember = { name, role, email, img };
+  teamMembers.push(newMember);
+  let card = ``;
+  for (const Members of teamMembers) {
+    const { name, role, email, img } = Members;
+
+    card += `<div class="col-4">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="./${img}"
+                  class="img-fluid rounded-start"
+                  alt="${name}"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body text-bg-dark">
+                  <h5 class="card-title">${name}</h5>
+                  <p class="card-text">${role}</p>
+                  <p class="card-text">
+                    <small class="link-primary">${email}</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+  }
+  cardContainer.innerHTML = card;
 });
