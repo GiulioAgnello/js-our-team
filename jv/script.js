@@ -48,11 +48,40 @@ const newMemebersFrom = document.getElementById("new-membersforms");
 
 // ciclo per immettere l'html
 
-let card = ``;
-for (const Members of teamMembers) {
-  const { name, role, email, img } = Members;
+// let card = ``;
+// for (const Members of teamMembers) {
+//   const { name, role, email, img } = Members;
 
-  card += `<div class="col-4">
+//   card += `<div class="col-4">
+//           <div class="card mb-3" style="max-width: 540px">
+//             <div class="row g-0">
+//               <div class="col-md-4">
+//                 <img
+//                   src="./${img}"
+//                   class="img-fluid rounded-start"
+//                   alt="${name}"
+//                 />
+//               </div>
+//               <div class="col-md-8">
+//                 <div class="card-body text-bg-dark">
+//                   <h5 class="card-title">${name}</h5>
+//                   <p class="card-text">${role}</p>
+//                   <p class="card-text">
+//                     <small class="link-primary">${email}</small>
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>`;
+// }
+
+// cardContainer.innerHTML = card;
+
+// form per inserire nuova card
+
+const addMember = (name, role, email, img) => {
+  return `<div class="col-4">
           <div class="card mb-3" style="max-width: 540px">
             <div class="row g-0">
               <div class="col-md-4">
@@ -74,15 +103,16 @@ for (const Members of teamMembers) {
             </div>
           </div>
         </div>`;
+};
+
+let card = ``;
+for (const Members of teamMembers) {
+  const { name, role, email, img } = Members;
+
+  card += addMember(name, role, email, img);
 }
 
 cardContainer.innerHTML = card;
-
-// form per inserire nuova card
-
-const addMember = () => {
-  cardContainer.innerHTML = card;
-};
 
 newMemebersFrom.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -93,32 +123,6 @@ newMemebersFrom.addEventListener("submit", (e) => {
 
   const newMember = { name, role, email, img };
   teamMembers.push(newMember);
-  let card = ``;
-  for (const Members of teamMembers) {
-    const { name, role, email, img } = Members;
 
-    card += `<div class="col-4">
-          <div class="card mb-3" style="max-width: 540px">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img
-                  src="./${img}"
-                  class="img-fluid rounded-start"
-                  alt="${name}"
-                />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body text-bg-dark">
-                  <h5 class="card-title">${name}</h5>
-                  <p class="card-text">${role}</p>
-                  <p class="card-text">
-                    <small class="link-primary">${email}</small>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>`;
-  }
-  cardContainer.innerHTML = card;
+  cardContainer.innerHTML += addMember(name, role, email, img);
 });
