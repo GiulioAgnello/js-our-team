@@ -121,8 +121,8 @@ newMemebersFrom.addEventListener("submit", (e) => {
   const email = emailHtml.value;
   const img = imgHtml.value;
 
-  const newMember = { name, role, email, img };
-  teamMembers.push(newMember);
+  // const newMember = { name, role, email, img };
+  // teamMembers.push(newMember);
 
   cardContainer.innerHTML += addMember(name, role, email, img);
 });
